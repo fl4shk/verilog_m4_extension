@@ -1,0 +1,4 @@
+*.sw[pox]
+src/tags
+types_*.taghl
+*.ignore
