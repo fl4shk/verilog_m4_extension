@@ -44,7 +44,11 @@ define(<:ExtPort:>, <:_Convert(_List(<:__EXT_PORT_BEGIN__:>, $@, <:__EXT_PORT_EN
 define(<:ExtSigPort:>, <:_Convert(_List(<:__EXT_SIG_PORT_BEGIN__:>, $@, <:__EXT_SIG_PORT_END__:>)):>)dnl
 define(<:ExtVarPort:>, <:_Convert(_List(<:__EXT_VAR_PORT_BEGIN__:>, $@, <:__EXT_VAR_PORT_END__:>)):>)dnl
 define(<:ExtSig:>, <:_Convert(_List(<:__EXT_SIG_BEGIN__:>, $@, <:__EXT_SIG_END__:>)):>)dnl
+define(<:ExtAssignSplitToSig:>, <:_Convert(_List(<:__EXT_ASSIGN_SPLIT_TO_SIG_BEGIN__:>, $@, <:__EXT_ASSIGN_SPLIT_TO_SIG_END__:>)):>)dnl
+define(<:ExtAssignSigToSplit:>, <:_Convert(_List(<:__EXT_ASSIGN_SIG_TO_SPLIT_BEGIN__:>, $@, <:__EXT_ASSIGN_SIG_TO_SPLIT_END__:>)):>)dnl
 define(<:ExtVar:>, <:_Convert(_List(<:__EXT_VAR_BEGIN__:>, $@, <:__EXT_VAR_END__:>)):>)dnl
+define(<:ExtAssignSplitToVar:>, <:_Convert(_List(<:__EXT_ASSIGN_SPLIT_TO_VAR_BEGIN__:>, $@, <:__EXT_ASSIGN_SPLIT_TO_VAR_END__:>)):>)dnl
+define(<:ExtAssignVarToSplit:>, <:_Convert(_List(<:__EXT_ASSIGN_VAR_TO_SPLIT_BEGIN__:>, $@, <:__EXT_ASSIGN_VAR_TO_SPLIT_END__:>)):>)dnl
 define(<:ExtMap:>, <:_Convert(_List(<:__EXT_MAP_BEGIN__:>, $@, <:__EXT_MAP_END__:>)):>)dnl
 define(<:ExtDefVhdlTypes:>, <:_Convert(_List(<:__EXT_DEF_VHDL_TYPES_BEGIN__:>, $@, <:__EXT_DEF_VHDL_TYPES_END__:>)):>)dnl
 define(<:mbr:>, <:ifelse($#, 0, <::>, $#, 1, <:$1:>, $#, 2, <:_Cat(<:$1:>, <:_:>, <:$2:>):>, <:$0($0(<:$1:>, <:$2:>), shift(shift($@))):>):>)dnl

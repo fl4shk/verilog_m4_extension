@@ -1,3 +1,20 @@
+extCommand:
+	extPort
+	| extSigPort
+	| extVarPort
+
+	| extSig
+	| extAssignSplitToSig
+	| extAssignSigToSplit
+
+	| extVar
+	| extAssignSplitToVar
+	| extAssignVarToSplit
+
+	| extMap
+
+	| extDefVhdlTypes
+	;
 extStruct:
 	KwExtStructBegin
 		extStruct_ComAndMemb+
@@ -78,10 +95,31 @@ extSig:
 		MiscIdent extTypename
 	KwExtSigEnd
 	;
+extAssignSplitToSig:
+	KwExtAssignSplitToSigBegin
+		MiscIdent MiscIdent extTypename
+	KwExtAssignSplitToSigEnd
+	;
+extAssignSigToSplit:
+	KwExtAssignSigToSplitBegin
+		MiscIdent MiscIdent extTypename
+	KwExtAssignSigToSplitEnd
+	;
+
 extVar:
 	KwExtVarBegin
 		MiscIdent extTypename
 	KwExtVarEnd
+	;
+extAssignSplitToVar:
+	KwExtAssignSplitToVarBegin
+		MiscIdent MiscIdent extTypename
+	KwExtAssignSplitToVarEnd
+	;
+extAssignVarToSplit:
+	KwExtAssignVarToSplitBegin
+		MiscIdent MiscIdent extTypename
+	KwExtAssignVarToSplitEnd
 	;
 
 extMap:
@@ -95,6 +133,7 @@ extDefVhdlTypes:
 		MiscIdent extTypename
 	KwExtDefVhdlTypesEnd
 	;
+
 
 
 identOrOther:
@@ -135,9 +174,17 @@ KwPortDir: 'in' | 'IN' | 'out' | 'OUT' | 'inout' | 'INOUT' ;
 
 KwExtSigBegin: '__EXT_SIG_BEGIN__' ;
 KwExtSigEnd: '__EXT_SIG_END__' ;
+KwExtAssignSplitToSigBegin: '__EXT_ASSIGN_SPLIT_TO_SIG_BEGIN__' ;
+KwExtAssignSplitToSigEnd: '__EXT_ASSIGN_SPLIT_TO_SIG_END__' ;
+KwExtAssignSigToSplitBegin: '__EXT_ASSIGN_SIG_TO_SPLIT_BEGIN__' ;
+KwExtAssignSigToSplitEnd: '__EXT_ASSIGN_SIG_TO_SPLIT_END__' ;
 
 KwExtVarBegin: '__EXT_VAR_BEGIN__' ;
 KwExtVarEnd: '__EXT_VAR_END__' ;
+KwExtAssignSplitToVarBegin: '__EXT_ASSIGN_SPLIT_TO_VAR_BEGIN__' ;
+KwExtAssignSplitToVarEnd: '__EXT_ASSIGN_SPLIT_TO_VAR_END__' ;
+KwExtAssignVarToSplitBegin: '__EXT_ASSIGN_VAR_TO_SPLIT_BEGIN__' ;
+KwExtAssignVarToSplitEnd: '__EXT_ASSIGN_VAR_TO_SPLIT_END__' ;
 
 KwExtMapBegin: '__EXT_MAP_BEGIN__' ;
 KwExtMapEnd: '__EXT_MAP_BEGIN__' ;
