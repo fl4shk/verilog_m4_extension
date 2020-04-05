@@ -29,6 +29,15 @@ define(<:_Incr:>, <:define(<:$1:>, incr(<:$1:>)):>)dnl
 define(<:_Decr:>, <:define(<:$1:>, decr(<:$1:>)):>)dnl
 dnl
 dnl
+define(<:Unsigned:>, <:unsigned(w2r($@)):>)dnl
+define(<:Signed:>, <:signed(w2r($@)):>)dnl
+define(<:IntegerVector:>, <:integer_vector(w2r($@)):>)dnl
+dnl
+dnl
+define(<:ExtEnum:>, <:pushdef(<:_I:>)define(<:_I:>, 0)dnl
+	_Foreach(<:_One:>, 
+	<:	constant _One(): Unsigned(<:$1:>) := to_unsigned(_I(), product($@));<::>_Incr(<:_I:>):>,
+	shift($@))popdef(<:_I:>))dnl
 define(<:ExtStruct:>, <:_List(<:__EXT_STRUCT_BEGIN__:>, $@, <:__EXT_STRUCT_END__:>):>)dnl
 define(<:Memb:>, <:_List(<:__EXT_MEMBER_BEGIN__:>, $@, <:__EXT_MEMBER_END__:>):>)dnl
 define(<:Com:>, <:_List(<:__EXT_COMMENT_BEGIN__:>, $@, <:__EXT_COMMENT_END__:>):>)dnl
@@ -43,15 +52,28 @@ define(<:_Convert:>, <:syscmd(<:../convert.py Stringify($@):>):>)dnl
 define(<:ExtPort:>, <:_Convert(_List(<:__EXT_PORT_BEGIN__:>, $@, <:__EXT_PORT_END__:>)):>)dnl
 define(<:ExtSigPort:>, <:_Convert(_List(<:__EXT_SIG_PORT_BEGIN__:>, $@, <:__EXT_SIG_PORT_END__:>)):>)dnl
 define(<:ExtVarPort:>, <:_Convert(_List(<:__EXT_VAR_PORT_BEGIN__:>, $@, <:__EXT_VAR_PORT_END__:>)):>)dnl
+dnl
+dnl
 define(<:ExtSig:>, <:_Convert(_List(<:__EXT_SIG_BEGIN__:>, $@, <:__EXT_SIG_END__:>)):>)dnl
 define(<:ExtAssignSplitToSig:>, <:_Convert(_List(<:__EXT_ASSIGN_SPLIT_TO_SIG_BEGIN__:>, $@, <:__EXT_ASSIGN_SPLIT_TO_SIG_END__:>)):>)dnl
 define(<:ExtAssignSigToSplit:>, <:_Convert(_List(<:__EXT_ASSIGN_SIG_TO_SPLIT_BEGIN__:>, $@, <:__EXT_ASSIGN_SIG_TO_SPLIT_END__:>)):>)dnl
+dnl
+dnl
 define(<:ExtVar:>, <:_Convert(_List(<:__EXT_VAR_BEGIN__:>, $@, <:__EXT_VAR_END__:>)):>)dnl
 define(<:ExtAssignSplitToVar:>, <:_Convert(_List(<:__EXT_ASSIGN_SPLIT_TO_VAR_BEGIN__:>, $@, <:__EXT_ASSIGN_SPLIT_TO_VAR_END__:>)):>)dnl
 define(<:ExtAssignVarToSplit:>, <:_Convert(_List(<:__EXT_ASSIGN_VAR_TO_SPLIT_BEGIN__:>, $@, <:__EXT_ASSIGN_VAR_TO_SPLIT_END__:>)):>)dnl
+dnl
+dnl
 define(<:ExtMap:>, <:_Convert(_List(<:__EXT_MAP_BEGIN__:>, $@, <:__EXT_MAP_END__:>)):>)dnl
-define(<:ExtDefVhdlTypes:>, <:_Convert(_List(<:__EXT_DEF_VHDL_TYPES_BEGIN__:>, $@, <:__EXT_DEF_VHDL_TYPES_END__:>)):>)dnl
-define(<:mbr:>, <:ifelse($#, 0, <::>, $#, 1, <:$1:>, $#, 2, <:_Cat(<:$1:>, <:_:>, <:$2:>):>, <:$0($0(<:$1:>, <:$2:>), shift(shift($@))):>):>)dnl
+dnl
+dnl
+define(<:mb:>, <:ifelse($#, 0, <::>, $#, 1, <:$1:>, $#, 2, <:_Cat(<:$1:>, <:_:>, <:$2:>):>, <:$0($0(<:$1:>, <:$2:>), shift(shift($@))):>):>)dnl
+define(<:sum:>, <:ifelse($#, 0, <::>, $#, 1, <:$1:>, $#, 2, <:$1 + $2:>, <:$0($0(<:$1:>, <:$2:>), shift(shift($@))):>):>)dnl
+define(<:product:>, <:ifelse($#, 0, <::>, $#, 1, <:$1:>, $#, 2, <:$1 * $2:>, <:$0($0(<:$1:>, <:$2:>), shift(shift($@))):>):>)dnl
+define(<:w2r:>, <:(product($@)) - 1 downto 0:>)dnl
+define(<:as2r:>, <:0 to (product($@)) - 1:>)dnl
+define(<:ind:>, <:product(<:$2:>, <:(<:$1:> + 1):>) - 1 downto product(<:$2:>, <:$1:>):>)dnl
+define(<:dot:>, <:<:$1:> => <:$1:>:>)dnl
 dnl
 dnl
 dnl define(<:_Stacks_Str:>, <:_IndCat(__stacks__,$@):>)dnl

@@ -13,7 +13,7 @@ extCommand:
 
 	| extMap
 
-	| extDefVhdlTypes
+	| extCreateVhdlTypes
 	;
 extStruct:
 	KwExtStructBegin
@@ -55,13 +55,13 @@ extSigned:
 extInteger:
 	KwExtInteger
 	;
+extIntegerVector:
+	KwExtIntegerVectorBegin
+		identOrOtherList
+	KwExtIntegerVectorEnd
+	;
 extNatural:
 	KwExtNatural
-	;
-extArray:
-	KwExtArrayBegin
-		identOrOtherList extTypename
-	KwExtArrayEnd
 	;
 
 extTypename:
@@ -71,7 +71,6 @@ extTypename:
 	| extSigned
 	| extInteger
 	| extNatural
-	| extArray
 	;
 
 extPort:
@@ -128,10 +127,10 @@ extMap:
 	KwExtMapEnd
 	;
 
-extDefVhdlTypes:
-	KwExtDefVhdlTypesBegin
+extCreateVhdlTypes:
+	KwExtCreateVhdlTypesBegin
 		MiscIdent extTypename
-	KwExtDefVhdlTypesEnd
+	KwExtCreateVhdlTypesEnd
 	;
 
 
@@ -158,10 +157,12 @@ KwExtSignedBegin: '__EXT_SIGNED_BEGIN__' ;
 KwExtSignedEnd: '__EXT_SIGNED_END__' ;
 
 KwExtInteger: '__EXT_INTEGER__' ;
+KwExtIntegerVectorBegin: '__EXT_INTEGER_VECTOR_BEGIN__' ;
+KwExtIntegerVectorEnd: '__EXT_INTEGER_VECTOR_END__' ;
 KwExtNatural: '__EXT_NATURAL__' ;
 
-KwExtArrayBegin: '__EXT_ARRAY_BEGIN__' ;
-KwExtArrayEnd: '__EXT_ARRAY_END__' ;
+//KwExtArrayBegin: '__EXT_ARRAY_BEGIN__' ;
+//KwExtArrayEnd: '__EXT_ARRAY_END__' ;
 
 KwExtPortBegin: '__EXT_PORT_BEGIN__' ;
 KwExtPortEnd: '__EXT_PORT_END__' ;
@@ -189,8 +190,8 @@ KwExtAssignVarToSplitEnd: '__EXT_ASSIGN_VAR_TO_SPLIT_END__' ;
 KwExtMapBegin: '__EXT_MAP_BEGIN__' ;
 KwExtMapEnd: '__EXT_MAP_BEGIN__' ;
 
-KwExtDefVhdlTypesBegin: '__EXT_DEF_VHDL_TYPES_BEGIN__' ;
-KwExtDefVhdlTypesEnd: '__EXT_DEF_VHDL_TYPES_END' ;
+KwExtCreateVhdlTypesBegin: '__EXT_DEF_VHDL_TYPES_BEGIN__' ;
+KwExtCreateVhdlTypesEnd: '__EXT_DEF_VHDL_TYPES_END' ;
 
 MiscIdent: [A-Za-z] ('_'? [A-Za-z0-9])*  ;
 MiscOther: . ;
